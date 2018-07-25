@@ -29,7 +29,7 @@
         <input type="submit" value="Get Roles For This User"/>
     </p>
 
-    @if (ViewBag.RolesForThisUser !=null)
+    if (ViewBag.RolesForThisUser !=null)
     {
     <div style="background-color:yellow">
         <h3>Roles for This User</h3>
@@ -43,7 +43,7 @@
     }
     <hr/>
     <h2>Delete a User From a Role</h2>
-    @using (Html.BeginForm("DeleteRoleForUser", "Roles"))
+    using (Html.BeginForm("DeleteRoleForUser", "Roles"))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)

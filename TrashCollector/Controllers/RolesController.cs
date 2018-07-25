@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -12,116 +13,48 @@ namespace TrashCollector.Controllers
 {
     public class RolesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        public ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Roles
-        public ActionResult Index()
-        {
-            return View(db.ApplicationUsers.ToList());
-        }
 
-        // GET: Roles/Details/5
-        public ActionResult Details(string id)
+        public ActionResult RoleOptions()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
-            if (applicationUser == null)
-            {
-                return HttpNotFound();
-            }
-            return View(applicationUser);
+            var list = db.Roles.Select(r => r.Name);
+            ViewBag.Roles = list;
+            return View("RoleOptions");
         }
-
-        // GET: Roles/Create
-        public ActionResult Create()
+        public ActionResult RoleAddToUser(string username, string rolename)
         {
-            return View();
+            ApplicationUser user = db.Users.Where(u => u.UserName == username).FirstOrDefault();
+            var account = new AccountController();
+            account.UserManager.AddToRole(user.Id, rolename);
+            return RedirectToAction("RoleOptions");
         }
-
-        // POST: Roles/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
+        public ActionResult GetRoles(string username)
         {
-            if (ModelState.IsValid)
-            {
-                db.ApplicationUsers.Add(applicationUser);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            ApplicationUser user = db.Users.Where(u => u.UserName == username).FirstOrDefault();
+            var account = new AccountController();
+            ViewBag.RolesForThisUser = account.UserManager.GetRoles(user.Id);
+            return RedirectToAction("RoleOptions");
 
-            return View(applicationUser);
         }
 
-        // GET: Roles/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult DeleteRoleForUser(string username, string rolename)
         {
-            if (id == null)
+            ApplicationUser user = db.Users.Where(u => u.UserName == username).FirstOrDefault();
+            var account = new AccountController();
+            if (account.UserManager.IsInRole(user.Id, rolename))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                account.UserManager.RemoveFromRole(user.Id, rolename);
+                ViewBag.ResultMessage = "Roll Removed";
             }
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
-            if (applicationUser == null)
+            else
             {
-                return HttpNotFound();
+                ViewBag.ResultMessage = "User not in roll.";
             }
-            return View(applicationUser);
-        }
 
-        // POST: Roles/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(applicationUser).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(applicationUser);
-        }
-
-        // GET: Roles/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
-            if (applicationUser == null)
-            {
-                return HttpNotFound();
-            }
-            return View(applicationUser);
-        }
-
-        // POST: Roles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            ApplicationUser applicationUser = db.ApplicationUsers.Find(id);
-            db.ApplicationUsers.Remove(applicationUser);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return RedirectToAction("RoleOptions");
         }
     }
 }

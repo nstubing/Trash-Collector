@@ -271,13 +271,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Admin\View.cshtml" />
-    <Content Include="Views\Admin\options.cshtml" />
+    <Content Include="Views\Admin\Layout.cshtml" />
+    <Content Include="Views\Admin\RoleOptions.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Delete.cshtml" />
     <Content Include="Views\Roles\Details.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Employee\Layout.cshtml" />
+    <Content Include="Views\Customer\Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
