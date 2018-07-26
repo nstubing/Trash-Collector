@@ -11,7 +11,7 @@ using TrashCollector.Models;
 
 namespace TrashCollector.Controllers
 {
-    public class RolesController : Controller
+    public class AdminController : Controller
     {
         public ApplicationDbContext db = new ApplicationDbContext();
 
@@ -19,15 +19,15 @@ namespace TrashCollector.Controllers
 
         public ActionResult RoleOptions()
         {
-            var list = db.Roles.Select(r => r.Name);
+            var list = db.Roles.Select(r=>r.Name);
             ViewBag.Roles = list;
-            return View("RoleOptions");
+            return View();
         }
-        public ActionResult RoleAddToUser(string username, string rolename)
+        public ActionResult RoleAddToUser(string username)
         {
             ApplicationUser user = db.Users.Where(u => u.UserName == username).FirstOrDefault();
             var account = new AccountController();
-            account.UserManager.AddToRole(user.Id, rolename);
+            account.UserManager.AddToRole(user.Id, "Employee");
             return RedirectToAction("RoleOptions");
         }
         [HttpPost]

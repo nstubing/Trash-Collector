@@ -197,13 +197,29 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201807251613266_InitialMigration.cs" />
     <Compile Include="Migrations\201807251613266_InitialMigration.Designer.cs">
       <DependentUpon>201807251613266_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807261528493_NewRole.cs" />
+    <Compile Include="Migrations\201807261528493_NewRole.Designer.cs">
+      <DependentUpon>201807261528493_NewRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807261552319_ItToldMeTo.cs" />
+    <Compile Include="Migrations\201807261552319_ItToldMeTo.Designer.cs">
+      <DependentUpon>201807261552319_ItToldMeTo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807261602321_StateAdded.cs" />
+    <Compile Include="Migrations\201807261602321_StateAdded.Designer.cs">
+      <DependentUpon>201807261602321_StateAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807261608276_NoAddress.cs" />
+    <Compile Include="Migrations\201807261608276_NoAddress.Designer.cs">
+      <DependentUpon>201807261608276_NoAddress.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -217,6 +233,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\slat.bootstrap.css" />
+    <Content Include="Content\slate.bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -300,6 +318,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807251613266_InitialMigration.resx">
       <DependentUpon>201807251613266_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261528493_NewRole.resx">
+      <DependentUpon>201807261528493_NewRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261552319_ItToldMeTo.resx">
+      <DependentUpon>201807261552319_ItToldMeTo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261602321_StateAdded.resx">
+      <DependentUpon>201807261602321_StateAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261608276_NoAddress.resx">
+      <DependentUpon>201807261608276_NoAddress.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

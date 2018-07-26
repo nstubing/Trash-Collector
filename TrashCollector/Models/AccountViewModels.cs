@@ -50,7 +50,6 @@ namespace TrashCollector.Models
     {
         [Required]
         [Display(Name = "User Name")]
-        [EmailAddress]
         public string UserName { get; set; }
 
         [Required]
@@ -81,37 +80,31 @@ namespace TrashCollector.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
 
         [Required]
-        [EmailAddress]
         [Display(Name = "Last Name")]
 
         public string LastName { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "UserName")]
         public string UserName { get; set; }
 
 
         [Required]
-        [EmailAddress]
-        [Display(Name = "House Address")]
+        [Display(Name = "Address")]
 
-        public int AddressNumber { get; set; }
+        public string Address { get; set; }
 
-
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Street")]
-        public string StreetAddress { get; set; }
 
         [Required]
-        [EmailAddress]
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        [Required]
         [Display(Name = "Zipcode")]
         public string ZipCode { get; set; }
     }

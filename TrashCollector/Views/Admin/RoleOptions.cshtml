@@ -13,8 +13,7 @@
     @Html.ValidationSummary(true)
 
     <p>
-        Username ; @Html.TextBox("UserName")
-        Role Name : @Html.DropDownList("RoleName",(IEnumerable<SelectListItem>)ViewBag.Roles,"Select ...")
+        Username ; @Html.TextBox("Enter Username to make them an employee")
     </p>
     <input type = "submit" value="Save"/>
 
@@ -42,7 +41,7 @@
     </div>
     }
     <hr/>
-    <h2>Delete a User From a Role</h2>
+    <h2>Remove Employeee</h2>
     using (Html.BeginForm("DeleteRoleForUser", "Roles"))
     {
         @Html.AntiForgeryToken()
