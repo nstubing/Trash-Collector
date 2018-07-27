@@ -6,25 +6,56 @@
 @using (Html.BeginForm())
 {
     <h2>ExcludedDays</h2>
-    <div class="col-md-10">
-        <h4>If you would like to supsend services for a certain time, enter your supspended service start date and your end date.  Your pickups will be resumed at the end of your supsension.</h4>
-        if(ViewBag.StartDay ==Null)
-        {
-        <h5>You currently do not have a service suspension on your account, would you like to add one?</h5>
-        }
-        else
-        {
-        <h5>The most recent suspension on your account is from @ViewBag.StartDay to @ViewBag.EndDay. If this suspension already finished it will not affect future pickups. You can add a new service suspension by entering a start and end date below.</h5>
-        }
+    <body>
+        <row>
+            <div class="col-md-10">
+                <h4>If you would like to supsend services for a certain time, enter your supspended service start date and your end date.  Your pickups will be resumed at the end of your supsension.</h4>
+            </div>
+            @if(ViewBag.StartDay ==null)
+            {
+            <div class="col-md-10">
+                <h5>You currently do not have a service suspension on your account, would you like to add one?</h5>
+            </div>
+            }
+            else
+            {
+            <div class="col-md-10">
+                <h5>The most recent suspension on your account is from @ViewBag.StartDay to @ViewBag.EndDay. If this suspension already finished it will not affect future pickups. You can add a new service suspension by entering a start and end date below.</h5>
+            </div>
+            }
+        </row>
 
-    </div>
-    <hr/>
-    <row>
-        <div class="col-md-2"></div>
 
-        </div>
-    </row>
-   
+        <hr />
+        <row>
+            <span class="col-md-1"></span>
+            <fieldset>
+                <span class="col-md-4">
+                    <label for="start">Start Date</label>
+                    <input type="date" name="start"/>
+                </span>
+                <span class="col-md-2"></span>
+                <span class="col-md-4">
+                    <label for="end">End Date</label>
+                    <input type="date" name="end" />
+                </span>
+            </fieldset>
+            <span class="col-md-1"></span>
+        </row>
+
+        <row>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save New Suspension" class="btn btn-default" />
+                </div>
+            </div>
+        </row>
+        <row>
+            <div>
+                @Html.ActionLink("Return to Home", "Home")
+            </div>
+        </row>
+    </body>
 }
 
 

@@ -35,5 +35,24 @@ namespace TrashCollector.Controllers
             db.SaveChanges();
             return RedirectToAction("Pickup");
         }
+        public ActionResult ExcludedDays()
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var currentUser = db.Users.FirstOrDefault(u => u.Id == currentUserId);
+            ViewBag.StartDay = currentUser.ExcludedStartDate;
+            ViewBag.EndDay = currentUser.ExcludedEndDate;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ExcludedDays(DateTime start, DateTime end)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var currentUser = db.Users.FirstOrDefault(u => u.Id == currentUserId);
+            currentUser.ExcludedStartDate = start;
+            currentUser.ExcludedEndDate = end;
+            db.SaveChanges();
+            return RedirectToAction("ExcludedDays");
+        }
+
     }
 }

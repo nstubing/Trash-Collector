@@ -13,7 +13,7 @@
     {
     <div class=" col-md-10">
         <h3>
-            Your current day of the week for your scheduled pickup is @ViewBag.PickupDate.;
+            Your current day of the week for your scheduled pickup is @ViewBag.PickupDate.
         </h3>
     </div>
         
@@ -25,13 +25,11 @@
         </h3>
     }
     <hr/>
-    <div>
-        <h1> </h1>
-    </div>
+    <row></row>
     <hr/>
     <h5>
         Pick a day for your new pickup day  
-        @Html.DropDownList("PickedDay", new SelectList(ViewBag.Days, "Name"));
+        @Html.DropDownList("PickedDay", new SelectList(ViewBag.Days, "Name"))
     </h5>
 
     
