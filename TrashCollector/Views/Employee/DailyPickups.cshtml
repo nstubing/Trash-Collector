@@ -1,0 +1,65 @@
+﻿@model IEnumerable<TrashCollector.Models.Pickup>
+
+@{
+    ViewBag.Title = "DailyPickups";
+}
+
+<h2>DailyPickups</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            State
+        </th>
+        <th>
+            ZipCode
+        </th>
+        <th>
+            Scheduled Day
+        </th>
+        <th>
+            Confirmation
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.ZipCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.ScheduledDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Confirmation)
+        </td>
+        <td>
+            @Html.ActionLink("Confim Pickup", "Confirm", new { id=item.Id }) |
+            @Html.ActionLink("Map", "Map", new { id=item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>
