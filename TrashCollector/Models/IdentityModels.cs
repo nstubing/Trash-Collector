@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -17,6 +19,9 @@ namespace TrashCollector.Models
         public string Address { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
+        public string ScheduledDay { get; set; }
+        public DateTime ExcludedStartDate { get; set; }
+        public DateTime ExcludedEndDate { get; set; }
 
 
 
@@ -31,7 +36,7 @@ namespace TrashCollector.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Pickup> Pickups { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -41,6 +46,8 @@ namespace TrashCollector.Models
         {
             return new ApplicationDbContext();
         }
+
+        //public System.Data.Entity.DbSet<TrashCollector.Models.Pickup> Pickups { get; set; }
 
         //public System.Data.Entity.DbSet<TrashCollector.Models.ApplicationUser> ApplicationUsers { get; set; }
     }

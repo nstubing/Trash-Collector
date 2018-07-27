@@ -198,6 +198,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\PickupsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,10 +222,31 @@
     <Compile Include="Migrations\201807261608276_NoAddress.Designer.cs">
       <DependentUpon>201807261608276_NoAddress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807271244321_PickupsAdded.cs" />
+    <Compile Include="Migrations\201807271244321_PickupsAdded.Designer.cs">
+      <DependentUpon>201807271244321_PickupsAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807271250248_pickupsAdded1.cs" />
+    <Compile Include="Migrations\201807271250248_pickupsAdded1.Designer.cs">
+      <DependentUpon>201807271250248_pickupsAdded1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807271257504_PickupActuallyAdded.cs" />
+    <Compile Include="Migrations\201807271257504_PickupActuallyAdded.Designer.cs">
+      <DependentUpon>201807271257504_PickupActuallyAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807271321403_ScheduledDay.cs" />
+    <Compile Include="Migrations\201807271321403_ScheduledDay.Designer.cs">
+      <DependentUpon>201807271321403_ScheduledDay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807271331064_Addedendstart.cs" />
+    <Compile Include="Migrations\201807271331064_Addedendstart.Designer.cs">
+      <DependentUpon>201807271331064_Addedendstart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Pickup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -298,6 +320,12 @@
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Employee\Layout.cshtml" />
     <Content Include="Views\Customer\Layout.cshtml" />
+    <Content Include="Views\Customer\Pickup.cshtml" />
+    <Content Include="Views\Pickups\Create.cshtml" />
+    <Content Include="Views\Pickups\Delete.cshtml" />
+    <Content Include="Views\Pickups\Details.cshtml" />
+    <Content Include="Views\Pickups\Edit.cshtml" />
+    <Content Include="Views\Pickups\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -330,6 +358,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807261608276_NoAddress.resx">
       <DependentUpon>201807261608276_NoAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807271244321_PickupsAdded.resx">
+      <DependentUpon>201807271244321_PickupsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807271250248_pickupsAdded1.resx">
+      <DependentUpon>201807271250248_pickupsAdded1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807271257504_PickupActuallyAdded.resx">
+      <DependentUpon>201807271257504_PickupActuallyAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807271321403_ScheduledDay.resx">
+      <DependentUpon>201807271321403_ScheduledDay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807271331064_Addedendstart.resx">
+      <DependentUpon>201807271331064_Addedendstart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -17,6 +17,11 @@ namespace TrashCollector.Controllers
         public ApplicationDbContext db = new ApplicationDbContext();
         public ApplicationUserManager _userManager;        // GET: Roles
 
+
+        public ActionResult Home()
+        {
+            return View();
+        }
         public ActionResult RoleOptions()
         {
             UserManager = UserManager;
