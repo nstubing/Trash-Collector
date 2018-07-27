@@ -5,11 +5,11 @@
     }
     else if (User.IsInRole("Employee"))
     {
-        Layout = "~/Views/Employee/_Layout.cshtml";
+        Layout = "~/Views/Employee/Layout.cshtml";
     }
     else if (User.IsInRole("Customer"))
     {
-        Layout = "~/Views/Customer/_Layout.cshtml";
+        Layout = "~/Views/Customer/Layout.cshtml";
     }
     else
     {

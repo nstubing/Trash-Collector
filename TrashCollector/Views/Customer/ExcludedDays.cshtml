@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "ExcludedDays";
+}
+
+@using (Html.BeginForm())
+{
+    <h2>ExcludedDays</h2>
+    <div class="col-md-10">
+        <h4>If you would like to supsend services for a certain time, enter your supspended service start date and your end date.  Your pickups will be resumed at the end of your supsension.</h4>
+        if(ViewBag.StartDay ==Null)
+        {
+        <h5>You currently do not have a service suspension on your account, would you like to add one?</h5>
+        }
+        else
+        {
+        <h5>The most recent suspension on your account is from @ViewBag.StartDay to @ViewBag.EndDay. If this suspension already finished it will not affect future pickups. You can add a new service suspension by entering a start and end date below.</h5>
+        }
+
+    </div>
+    <hr/>
+    <row>
+        <div class="col-md-2"></div>
+
+        </div>
+    </row>
+   
+}
+
+

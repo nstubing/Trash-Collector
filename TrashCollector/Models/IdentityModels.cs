@@ -20,8 +20,8 @@ namespace TrashCollector.Models
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string ScheduledDay { get; set; }
-        public DateTime ExcludedStartDate { get; set; }
-        public DateTime ExcludedEndDate { get; set; }
+        public DateTime? ExcludedStartDate { get; set; }
+        public DateTime? ExcludedEndDate { get; set; }
 
 
 
@@ -47,8 +47,5 @@ namespace TrashCollector.Models
             return new ApplicationDbContext();
         }
 
-        //public System.Data.Entity.DbSet<TrashCollector.Models.Pickup> Pickups { get; set; }
-
-        //public System.Data.Entity.DbSet<TrashCollector.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

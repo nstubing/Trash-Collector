@@ -195,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -241,6 +242,10 @@
     <Compile Include="Migrations\201807271331064_Addedendstart.cs" />
     <Compile Include="Migrations\201807271331064_Addedendstart.Designer.cs">
       <DependentUpon>201807271331064_Addedendstart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807271410023_NullableDateTime.cs" />
+    <Compile Include="Migrations\201807271410023_NullableDateTime.Designer.cs">
+      <DependentUpon>201807271410023_NullableDateTime.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -326,6 +331,10 @@
     <Content Include="Views\Pickups\Details.cshtml" />
     <Content Include="Views\Pickups\Edit.cshtml" />
     <Content Include="Views\Pickups\Index.cshtml" />
+    <Content Include="Views\Admin\Home.cshtml" />
+    <Content Include="Views\Admin\Employees.cshtml" />
+    <Content Include="Views\Customer\Home.cshtml" />
+    <Content Include="Views\Customer\ExcludedDays.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -373,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807271331064_Addedendstart.resx">
       <DependentUpon>201807271331064_Addedendstart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807271410023_NullableDateTime.resx">
+      <DependentUpon>201807271410023_NullableDateTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
