@@ -151,7 +151,7 @@ namespace TrashCollector.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser {FirstName = model.FirstName, LastName = model.LastName, Address = model.Address,State = model.State,ZipCode=model.ZipCode, UserName = model.UserName, Email = model.Email };
+                var user = new ApplicationUser {FirstName = model.FirstName, LastName = model.LastName,City = model.City, Address = model.Address,State = model.State,ZipCode=model.ZipCode, UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

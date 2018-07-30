@@ -28,8 +28,6 @@ namespace TrashCollector.Controllers
 
         public ActionResult WeeklyPickups()
         {
-            //var currentDay = DateTime.Now;
-            //var currentDayString = currentDay.ToString("d");
             var customerID = db.Roles.FirstOrDefault(r => r.Name == "Customer").Id;
             var DailyUserRoles = db.Roles.SelectMany(u => u.Users.Where(r => r.RoleId == customerID));
             var customersUsers = from userID in DailyUserRoles
@@ -39,7 +37,9 @@ namespace TrashCollector.Controllers
                                  select user;
             var currentUserId = User.Identity.GetUserId();
             var currentUserZip = db.Users.FirstOrDefault(u => u.Id == currentUserId).ZipCode;
-            var myWeeklyPickups = db.Users.Where(u => u.ZipCode == currentUserZip);
+            var myWeeklyPickups = customersUsers.Where(u => u.ZipCode == currentUserZip);
+            List<string> myDays = new List<string> { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","All" };
+            ViewBag.Days = myDays;
             return View(myWeeklyPickups);
         }
 
@@ -52,6 +52,28 @@ namespace TrashCollector.Controllers
             thisUser.BillTotal += 3.00;
             db.SaveChanges();
             return RedirectToAction("DailyPickups");
+        }
+        [HttpPost]
+        public ActionResult WeeklyPickups(string SortByDate)
+        {
+            if(SortByDate=="All")
+            {
+                return RedirectToAction("WeeklyPickups");
+            }
+            var customerID = db.Roles.FirstOrDefault(r => r.Name == "Customer").Id;
+            var DailyUserRoles = db.Roles.SelectMany(u => u.Users.Where(r => r.RoleId == customerID));
+            var customersUsers = from userID in DailyUserRoles
+                                 join user in db.Users
+                                 on userID.UserId equals user.Id
+                                 where userID.UserId == user.Id
+                                 select user;
+            var currentUserId = User.Identity.GetUserId();
+            var currentUserZip = db.Users.FirstOrDefault(u => u.Id == currentUserId).ZipCode;
+            var myWeeklyPickups = customersUsers.Where(u => u.ZipCode == currentUserZip);
+            var OrderedByDate = myWeeklyPickups.Where(u => u.ScheduledDay == SortByDate);
+            List<string> myDays = new List<string> { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "All" };
+            ViewBag.Days = myDays;
+            return View(OrderedByDate);
         }
     }
 }

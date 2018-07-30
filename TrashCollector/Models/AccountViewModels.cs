@@ -98,6 +98,9 @@ namespace TrashCollector.Models
         [Display(Name = "Address")]
 
         public string Address { get; set; }
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
 
 
         [Required]

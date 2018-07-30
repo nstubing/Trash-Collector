@@ -272,6 +272,10 @@
     <Compile Include="Migrations\201807301435480_BillAdded.Designer.cs">
       <DependentUpon>201807301435480_BillAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807301656463_CityAdded.cs" />
+    <Compile Include="Migrations\201807301656463_CityAdded.Designer.cs">
+      <DependentUpon>201807301656463_CityAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -364,6 +368,8 @@
     <Content Include="Views\Employee\DailyPickups.cshtml" />
     <Content Include="Views\Employee\WeeklyPickups.cshtml" />
     <Content Include="Views\Customer\Payment.cshtml" />
+    <Content Include="Views\Customer\Pricing.cshtml" />
+    <Content Include="Views\Customer\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -432,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807301435480_BillAdded.resx">
       <DependentUpon>201807301435480_BillAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807301656463_CityAdded.resx">
+      <DependentUpon>201807301656463_CityAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -65,21 +65,16 @@ namespace TrashCollector.Controllers
 
         }
 
-        //public ActionResult DeleteRoleForUser(string username, string rolename)
-        //{
-        //    ApplicationUser user = db.Users.Where(u => u.UserName == username).FirstOrDefault();
-        //    var account = new AccountController();
-        //    if (account.UserManager.IsInRole(user.Id, rolename))
-        //    {
-        //        account.UserManager.RemoveFromRole(user.Id, rolename);
-        //        ViewBag.ResultMessage = "Roll Removed";
-        //    }
-        //    else
-        //    {
-        //        ViewBag.ResultMessage = "User not in roll.";
-        //    }
-
-        //    return RedirectToAction("RoleOptions");
-        //}
+        public ActionResult Employees()
+        {
+            var employeeID = db.Roles.FirstOrDefault(r => r.Name == "Employee").Id;
+            var employeeRoles = db.Roles.SelectMany(u => u.Users.Where(r => r.RoleId == employeeID));
+            var employeeUsers = from userID in employeeRoles
+                                 join user in db.Users
+                                 on userID.UserId equals user.Id
+                                 where userID.UserId == user.Id
+                                 select user;
+            return View(employeeUsers);
+        }
     }
 }
