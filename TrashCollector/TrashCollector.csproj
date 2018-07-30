@@ -276,10 +276,19 @@
     <Compile Include="Migrations\201807301656463_CityAdded.Designer.cs">
       <DependentUpon>201807301656463_CityAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807301937206_OneTimePickups.cs" />
+    <Compile Include="Migrations\201807301937206_OneTimePickups.Designer.cs">
+      <DependentUpon>201807301937206_OneTimePickups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807301939263_OneTimer.cs" />
+    <Compile Include="Migrations\201807301939263_OneTimer.Designer.cs">
+      <DependentUpon>201807301939263_OneTimer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OneTimePickup.cs" />
     <Compile Include="Models\Pickup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -291,6 +300,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\slat.bootstrap.css" />
     <Content Include="Content\slate.bootstrap.min.css" />
+    <Content Include="Content\trashSong.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -370,6 +380,9 @@
     <Content Include="Views\Customer\Payment.cshtml" />
     <Content Include="Views\Customer\Pricing.cshtml" />
     <Content Include="Views\Customer\About.cshtml" />
+    <Content Include="Views\Home\Features.cshtml" />
+    <Content Include="Views\Home\Pricing.cshtml" />
+    <Content Include="Views\Customer\OneTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -441,6 +454,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807301656463_CityAdded.resx">
       <DependentUpon>201807301656463_CityAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807301937206_OneTimePickups.resx">
+      <DependentUpon>201807301937206_OneTimePickups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807301939263_OneTimer.resx">
+      <DependentUpon>201807301939263_OneTimer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

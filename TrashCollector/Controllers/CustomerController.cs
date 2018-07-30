@@ -25,6 +25,10 @@ namespace TrashCollector.Controllers
             ViewBag.Days = Days;
             return View();
         }
+        public ActionResult Home()
+        {
+            return View();
+        }
         public ActionResult Payment()
         {
             int currentMonth = DateTime.Today.Month;
@@ -36,6 +40,28 @@ namespace TrashCollector.Controllers
             ViewBag.Bill = CurrentUser.BillTotal;
             ViewBag.EndMonth = lastDayOfMonth;
             return View();
+        }
+        public ActionResult OneTime()
+        {
+            var currentUser = User.Identity.GetUserId();
+            var UserPickup = db.Users.FirstOrDefault(u => u.Id == currentUser);
+            var currentDay = DateTime.Now;
+            var myPickups = db.OneTimePickups.Where(o => o.UserId == UserPickup.Id).ToList();
+            ViewBag.OneTimeDays = myPickups;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult OneTime(DateTime pickup)
+        {
+            var currentUser = User.Identity.GetUserId();
+            var UserPickup = db.Users.FirstOrDefault(u => u.Id == currentUser);
+            OneTimePickup myPickup = new OneTimePickup();
+            myPickup.User = UserPickup;
+            string newDate = pickup.ToString("d");
+            myPickup.date = newDate;
+            db.OneTimePickups.Add(myPickup);
+            db.SaveChanges();
+            return RedirectToAction("OneTime");
         }
 
         [HttpPost]

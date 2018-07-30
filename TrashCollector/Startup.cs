@@ -20,6 +20,7 @@ namespace TrashCollector
             context = new ApplicationDbContext();
             CreateRolesandUsers();
             PopulatePickups();
+            AddOneTimePickups();
         }
 
         private void PopulatePickups()
@@ -38,6 +39,7 @@ namespace TrashCollector
                                      select user;
                 var dayPickups = customersUsers.Where(u => u.ScheduledDay == currentDay.DayOfWeek.ToString());
                 var dayMinusExcluded = dayPickups.Where(u => u.ExcludedStartDate == null || u.ExcludedStartDate > currentDay || u.ExcludedEndDate < currentDay).Include(u=>u);
+                var OneTimers = context.OneTimePickups.Where(o => o.date == currentDayString);
                 foreach (ApplicationUser customer in dayMinusExcluded)
                 {
                     Pickup newPickup = new Pickup();
@@ -46,10 +48,19 @@ namespace TrashCollector
                     newPickup.Confirmation = "Unconfirmed";
                     context.Pickups.Add(newPickup);
                 }
+                foreach (OneTimePickup customer in OneTimers)
+                {
+                    Pickup newPickup = new Pickup();
+                    newPickup.User = customer.User;
+                    newPickup.date = customer.date;
+                    newPickup.Confirmation = "Unconfirmed";
+                    context.Pickups.Add(newPickup);
+                }
                 context.SaveChanges();
             }
             
         }
+
 
         private void CreateRolesandUsers()
         {

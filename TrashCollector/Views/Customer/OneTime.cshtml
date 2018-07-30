@@ -1,0 +1,66 @@
+﻿@model TrashCollector.Models.OneTimePickup
+
+@{
+    ViewBag.Title = "OneTime";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OneTime</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <h2 class="Page-Title">
+            Add One Time Pickup
+        </h2>
+        <h5 class="Page-SecondaryTitle">
+            Add a one time pickup to your pickup schedule for an additional charge of $5 to your account on pickup.
+        </h5>
+        if (ViewBag.OneTimeDays.Count ==0)
+        {
+            <div>
+                <p> You currently have no extra pickup days scheduled.</p>
+            </div>
+        }
+        else
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        Dates Scheduled
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in ViewBag.OneTimeDays)
+                {
+                    <tr>
+                        <td>
+                            @ViewBag.OneTimeDays.date
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+
+                <div>
+                </div>
+                <div class="row">
+                    <span class="col-md-2"></span>
+                    <span class="col-md-4">
+                        <label for="start">Pickup Date</label>
+                        <input type="date" name="pickup" />
+                    </span>
+                    <span class="col-md-2"></span>
+                    <span class="col-md-3">
+                        <input type="submit" value="Save New Date" class="btn btn-default" />
+                    </span>
+                </div>
+                }
+
+        </body>
+</html>

@@ -39,6 +39,7 @@ namespace TrashCollector.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Pickup> Pickups { get; set; }
+        public DbSet<OneTimePickup> OneTimePickups { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

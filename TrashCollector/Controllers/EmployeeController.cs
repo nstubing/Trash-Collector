@@ -49,7 +49,7 @@ namespace TrashCollector.Controllers
             string thisPickupUserID = thisPickup.User.Id;
             thisPickup.Confirmation = "Confirmed";
             var thisUser = db.Users.FirstOrDefault(u => u.Id == thisPickupUserID);
-            thisUser.BillTotal += 3.00;
+            thisUser.BillTotal += 5.00;
             db.SaveChanges();
             return RedirectToAction("DailyPickups");
         }
