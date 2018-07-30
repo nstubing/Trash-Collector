@@ -1,4 +1,4 @@
-﻿@model TrashCollector.Models.OneTimePickup
+﻿@model IEnumerable<TrashCollector.Models.OneTimePickup>
 
 @{
     ViewBag.Title = "OneTime";
@@ -28,10 +28,11 @@
         }
         else
         {
+
             <table class="table">
                 <tr>
                     <th>
-                        Dates Scheduled
+                        Currently Scheduled Dates
                     </th>
                     <th></th>
                 </tr>
@@ -40,7 +41,7 @@
                 {
                     <tr>
                         <td>
-                            @ViewBag.OneTimeDays.date
+                            @item.date
                         </td>
                     </tr>
                 }

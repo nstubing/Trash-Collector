@@ -48,7 +48,7 @@ namespace TrashCollector.Controllers
             var currentDay = DateTime.Now;
             var myPickups = db.OneTimePickups.Where(o => o.UserId == UserPickup.Id).ToList();
             ViewBag.OneTimeDays = myPickups;
-            return View();
+            return View(myPickups);
         }
         [HttpPost]
         public ActionResult OneTime(DateTime pickup)

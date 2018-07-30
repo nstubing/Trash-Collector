@@ -20,7 +20,6 @@ namespace TrashCollector
             context = new ApplicationDbContext();
             CreateRolesandUsers();
             PopulatePickups();
-            AddOneTimePickups();
         }
 
         private void PopulatePickups()
