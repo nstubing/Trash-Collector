@@ -25,6 +25,18 @@ namespace TrashCollector.Controllers
             ViewBag.Days = Days;
             return View();
         }
+        public ActionResult Payment()
+        {
+            int currentMonth = DateTime.Today.Month;
+            var currentYear = DateTime.Today.Year;
+            var lastDay = DateTime.DaysInMonth(currentYear, currentMonth);
+            string lastDayOfMonth = currentMonth.ToString() + "/" + lastDay.ToString()  +  "/" + currentYear.ToString();
+            var currentUserID = User.Identity.GetUserId();
+            var CurrentUser = db.Users.FirstOrDefault(u => u.Id == currentUserID);
+            ViewBag.Bill = CurrentUser.BillTotal;
+            ViewBag.EndMonth = lastDayOfMonth;
+            return View();
+        }
 
         [HttpPost]
         public ActionResult Pickup(string PickedDay)

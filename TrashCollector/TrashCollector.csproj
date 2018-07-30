@@ -363,7 +363,7 @@
     <Content Include="Views\Employee\Home.cshtml" />
     <Content Include="Views\Employee\DailyPickups.cshtml" />
     <Content Include="Views\Employee\WeeklyPickups.cshtml" />
-    <Content Include="Views\Customer\Bill.cshtml" />
+    <Content Include="Views\Customer\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

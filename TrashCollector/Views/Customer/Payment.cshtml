@@ -1,0 +1,22 @@
+﻿@model TrashCollector.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Payment";
+}
+
+<h2 id="bill-Header">Current Balance</h2>
+<div class="col-md-10">
+    <h5 id="bill-balance">Your current payment required is $@ViewBag.Bill. Please pay by @ViewBag.EndMOnth or a late fee of 5 dollars will be added to your account.</h5>
+</div>
+
+<div class="col-md-10" id="bill-paragraph-div">
+    <p id="bill-paragraph">
+        Charges will only be incured when a pickup is confirmed, If a pickup is missed or you have a scheduled pickup suspension your account will not be charged.
+    </p>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Make Payment" class="btn btn-default" />
+    </div>
+</div>
+
