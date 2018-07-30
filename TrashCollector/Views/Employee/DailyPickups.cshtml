@@ -56,8 +56,16 @@
             @Html.DisplayFor(modelItem => item.Confirmation)
         </td>
         <td>
-            @Html.ActionLink("Confim Pickup", "Confirm", new { id=item.Id }) |
-            @Html.ActionLink("Map", "Map", new { id=item.Id }) 
+            @if (item.Confirmation == "unconfirmed")
+            {
+                @Html.ActionLink("Confim Pickup", "Confirm", new { id = item.Id }) |
+                @Html.ActionLink("Map", "Map", new { id = item.Id })
+            }
+            else
+            {
+                @Html.ActionLink("Map", "Map", new { id = item.Id })
+            }
+
         </td>
     </tr>
 }

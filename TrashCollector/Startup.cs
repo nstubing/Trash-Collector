@@ -2,6 +2,9 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using System;
+using System.Data.Entity;
+using System.Linq;
 using TrashCollector.Models;
 
 [assembly: OwinStartupAttribute(typeof(TrashCollector.Startup))]
@@ -9,15 +12,47 @@ namespace TrashCollector
 {
     public partial class Startup
     {
+        ApplicationDbContext context;
+
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            context = new ApplicationDbContext();
             CreateRolesandUsers();
+            PopulatePickups();
+        }
+
+        private void PopulatePickups()
+        {
+            var currentDay = DateTime.Now;
+            var currentDayString = currentDay.ToString("d");
+            var istodayPopulated = context.Pickups.FirstOrDefault(p => p.date == currentDayString);
+            if(istodayPopulated==null)
+            {
+                var customerID = context.Roles.FirstOrDefault(r => r.Name == "Customer").Id;
+                var DailyUserRoles = context.Roles.SelectMany(u => u.Users.Where(r => r.RoleId == customerID));
+                var customersUsers = from userID in DailyUserRoles
+                                     join user in context.Users
+                                     on userID.UserId equals user.Id
+                                     where userID.UserId == user.Id
+                                     select user;
+                var dayPickups = customersUsers.Where(u => u.ScheduledDay == currentDay.DayOfWeek.ToString());
+                var dayMinusExcluded = dayPickups.Where(u => u.ExcludedStartDate == null || u.ExcludedStartDate > currentDay || u.ExcludedEndDate < currentDay).Include(u=>u);
+                foreach (ApplicationUser customer in dayMinusExcluded)
+                {
+                    Pickup newPickup = new Pickup();
+                    newPickup.User = customer;
+                    newPickup.date = currentDay.ToString("d");
+                    newPickup.Confirmation = "Unconfirmed";
+                    context.Pickups.Add(newPickup);
+                }
+                context.SaveChanges();
+            }
+            
         }
 
         private void CreateRolesandUsers()
         {
-            ApplicationDbContext context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             if (!roleManager.RoleExists("Admin"))
@@ -51,6 +86,7 @@ namespace TrashCollector
                 role.Name = "Customer";
                 roleManager.Create(role);
             }
+
 
         }
     }

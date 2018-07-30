@@ -260,6 +260,18 @@
     <Compile Include="Migrations\201807272004114_DayToStringPickup.Designer.cs">
       <DependentUpon>201807272004114_DayToStringPickup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807301341042_ZipdToORder.cs" />
+    <Compile Include="Migrations\201807301341042_ZipdToORder.Designer.cs">
+      <DependentUpon>201807301341042_ZipdToORder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807301406437_ZipToString.cs" />
+    <Compile Include="Migrations\201807301406437_ZipToString.Designer.cs">
+      <DependentUpon>201807301406437_ZipToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807301435480_BillAdded.cs" />
+    <Compile Include="Migrations\201807301435480_BillAdded.Designer.cs">
+      <DependentUpon>201807301435480_BillAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -350,6 +362,8 @@
     <Content Include="Views\Customer\ExcludedDays.cshtml" />
     <Content Include="Views\Employee\Home.cshtml" />
     <Content Include="Views\Employee\DailyPickups.cshtml" />
+    <Content Include="Views\Employee\WeeklyPickups.cshtml" />
+    <Content Include="Views\Customer\Bill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -409,6 +423,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807272004114_DayToStringPickup.resx">
       <DependentUpon>201807272004114_DayToStringPickup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807301341042_ZipdToORder.resx">
+      <DependentUpon>201807301341042_ZipdToORder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807301406437_ZipToString.resx">
+      <DependentUpon>201807301406437_ZipToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807301435480_BillAdded.resx">
+      <DependentUpon>201807301435480_BillAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

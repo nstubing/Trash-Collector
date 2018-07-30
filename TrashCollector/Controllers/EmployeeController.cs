@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -14,8 +16,20 @@ namespace TrashCollector.Controllers
         // GET: Employee
         public ActionResult DailyPickups()
         {
+            db.Configuration.LazyLoadingEnabled = false;
             var currentDay = DateTime.Now;
             var currentDayString = currentDay.ToString("d");
+            var currentUserId = User.Identity.GetUserId();
+            var currentUserZip = db.Users.FirstOrDefault(u => u.Id == currentUserId).ZipCode;
+            var todaysPickups = db.Pickups.Where(p => p.date == currentDayString && p.Zipcode == currentUserZip).Include(u => u.User);
+
+            return View(todaysPickups);
+        }
+
+        public ActionResult WeeklyPickups()
+        {
+            //var currentDay = DateTime.Now;
+            //var currentDayString = currentDay.ToString("d");
             var customerID = db.Roles.FirstOrDefault(r => r.Name == "Customer").Id;
             var DailyUserRoles = db.Roles.SelectMany(u => u.Users.Where(r => r.RoleId == customerID));
             var customersUsers = from userID in DailyUserRoles
@@ -23,19 +37,21 @@ namespace TrashCollector.Controllers
                                  on userID.UserId equals user.Id
                                  where userID.UserId == user.Id
                                  select user;
-            var dayPickups = customersUsers.Where(u => u.ScheduledDay == currentDay.DayOfWeek.ToString());
-            var dayMinusExcluded = dayPickups.Where(u => u.ExcludedStartDate > currentDay || u.ExcludedEndDate < currentDay);
-           foreach(ApplicationUser customer in dayMinusExcluded)
-            {
-                Pickup newPickup = new Pickup();
-                newPickup.User = customer;
-                newPickup.date =currentDay.ToString("d");
-                db.Pickups.Add(newPickup);
-            }
-            db.SaveChanges();
-            var todaysPickups = db.Pickups.Where(p => p.date == currentDayString);
+            var currentUserId = User.Identity.GetUserId();
+            var currentUserZip = db.Users.FirstOrDefault(u => u.Id == currentUserId).ZipCode;
+            var myWeeklyPickups = db.Users.Where(u => u.ZipCode == currentUserZip);
+            return View(myWeeklyPickups);
+        }
 
-            return View(todaysPickups);
+        public ActionResult ConfirmPickup(int pickupID)
+        {
+            var thisPickup = db.Pickups.FirstOrDefault(p => p.Id == pickupID);
+            string thisPickupUserID = thisPickup.User.Id;
+            thisPickup.Confirmation = "Confirmed";
+            var thisUser = db.Users.FirstOrDefault(u => u.Id == thisPickupUserID);
+            thisUser.BillTotal += 3.00;
+            db.SaveChanges();
+            return RedirectToAction("DailyPickups");
         }
     }
 }

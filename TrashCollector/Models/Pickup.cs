@@ -16,5 +16,6 @@ namespace TrashCollector.Models
         public ApplicationUser User { get; set; }
         public string date { get; set; }
         public string Confirmation { get; set; }
+        public string Zipcode { get; set; }
     }
 }

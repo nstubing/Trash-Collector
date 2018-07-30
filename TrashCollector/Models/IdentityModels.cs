@@ -22,6 +22,7 @@ namespace TrashCollector.Models
         public string ScheduledDay { get; set; }
         public DateTime? ExcludedStartDate { get; set; }
         public DateTime? ExcludedEndDate { get; set; }
+        public double BillTotal { get; set; }
 
 
 
@@ -47,5 +48,6 @@ namespace TrashCollector.Models
             return new ApplicationDbContext();
         }
 
+        public System.Data.Entity.DbSet<TrashCollector.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
