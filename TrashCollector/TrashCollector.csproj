@@ -383,6 +383,7 @@
     <Content Include="Views\Home\Features.cshtml" />
     <Content Include="Views\Home\Pricing.cshtml" />
     <Content Include="Views\Customer\OneTime.cshtml" />
+    <Content Include="Views\Employee\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
