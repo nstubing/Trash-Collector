@@ -16,6 +16,14 @@ namespace TrashCollector.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Customer
+        public ActionResult Pricing()
+        {
+            return View();
+        }
+        public ActionResult About()
+        {
+            return View();
+        }
         public ActionResult Pickup()
         {
             var currentUser = User.Identity.GetUserId();
