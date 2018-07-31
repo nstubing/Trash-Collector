@@ -37,7 +37,7 @@ namespace TrashCollector
                                      where userID.UserId == user.Id
                                      select user;
                 var dayPickups = customersUsers.Where(u => u.ScheduledDay == currentDay.DayOfWeek.ToString());
-                var dayMinusExcluded = dayPickups.Where(u => u.ExcludedStartDate == null || u.ExcludedStartDate > currentDay || u.ExcludedEndDate < currentDay).Include(u=>u);
+                var dayMinusExcluded = dayPickups.Where(u => u.ExcludedStartDate == null || u.ExcludedStartDate > currentDay || u.ExcludedEndDate < currentDay);
                 var OneTimers = context.OneTimePickups.Where(o => o.date == currentDayString);
                 foreach (ApplicationUser customer in dayMinusExcluded)
                 {

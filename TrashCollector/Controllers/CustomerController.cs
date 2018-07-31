@@ -67,9 +67,17 @@ namespace TrashCollector.Controllers
         [HttpPost]
         public ActionResult Pickup(string PickedDay)
         {
+            var currentDay = DateTime.Now;
+            var currentDayString = currentDay.ToString("d");
             var currentUser = User.Identity.GetUserId();
             var UserPickup = db.Users.FirstOrDefault(u => u.Id == currentUser);
             UserPickup.ScheduledDay = PickedDay;
+            Pickup myPickup = new Pickup();
+            myPickup.User = UserPickup;
+            myPickup.date = currentDayString;
+            myPickup.Confirmation = "Unconfirmed";
+            myPickup.Zipcode = UserPickup.ZipCode;
+            db.Pickups.Add(myPickup);
             db.SaveChanges();
             return RedirectToAction("Pickup");
         }

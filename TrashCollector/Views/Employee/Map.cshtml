@@ -1,9 +1,8 @@
-﻿@{ 
+﻿
+@{
     ViewBag.Title = "Map";
 }
 
-<!DOCTYPE html>
-<html>
 <head>
     <style>
         /* Set the size of the div element that contains the map */
@@ -17,20 +16,27 @@
     <h3>Location</h3>
     <!--The div element for the map -->
     <div id="map"></div>
+    <div>
+        <p>
+            @Html.Action("Return to Daily Pickups", "DailyPickups");
+        </p>
+    </div>
     <script>
-// Initialize and add the map
-function initMap() {
-  // The location of Uluru
-    var LatLong = ViewBag.latLong; 
-  // The map, centered at Uluru
-    var map = new google.maps.Map(
-        document.getElementById('map'), { zoom: 4, center: LatLong });
-  // The marker, positioned at Uluru
-  var marker = new google.maps.Marker({position: LatLong, map: map});
-}
+        function initMap() {
+            var Address = '@ViewBag.Address';
+            var geocoder = new google.maps.Geocoder();
+            var LatLong = { lat: 39.9526, lng: 75.1652 };
+            geocoder.geocode({ 'address': Address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    LatLong = results[0].geometry.location;
+                    var map = new google.maps.Map(document.getElementById('map'), { zoom: 10, center: LatLong });
+                    var marker = new google.maps.Marker({ map: map, position: LatLong });
+                }
+            });
+        }
+
     </script>
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+            src='@ViewBag.myKey'>
     </script>
 </body>
-</html>
