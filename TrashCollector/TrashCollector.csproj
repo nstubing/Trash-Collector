@@ -290,6 +290,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OneTimePickup.cs" />
     <Compile Include="Models\Pickup.cs" />
+    <Compile Include="MyKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
