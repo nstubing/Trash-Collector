@@ -2,19 +2,19 @@
     ViewBag.Title = "Home Page";
 }
 
-@*<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>*@
+<style type="text/css">
+    #myVideo{
+        width:100%;
+    }
+</style>
 
 <div class="row">
     <span class="col-md-8">
-        <video controls autoplay="autoplay" loop="loop">
+        <video id="myVideo" autoplay="autoplay" loop="loop">
             <source src="~/Content/trashSong.mp4" type="video/mp4"/>
         </video> 
     </span>
-    <span class="col-md-4">
+    <span class="col-md-4" id="welcome">
         <h2>Welcome</h2>
         <p>To Philadelphia's premier trash collecter service, TRASH MAN. We drive door to door in our custom limousines to pick up your trash with style. No loud trucks, no smelly mess, and a whole lot of perfectly tailored tuxedos.</p>
     </span>

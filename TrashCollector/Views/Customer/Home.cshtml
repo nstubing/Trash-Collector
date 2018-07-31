@@ -3,10 +3,19 @@
     ViewBag.Title = "Home";
 }
 
-<h2>Home</h2>
+<style type="text/css">
+    #myVideo {
+        width: 100%;
+    }
+
+    .PageTitle {
+        padding: 25px;
+    }
+</style>
+<h2 class="PageTitle">Home</h2>
 <div class="row">
     <span class="col-md-8">
-        <video controls autoplay="autoplay" loop="loop">
+        <video id="myVideo" autoplay="autoplay" loop="loop">
             <source src="~/Content/trashSong.mp4" type="video/mp4" />
         </video>
     </span>

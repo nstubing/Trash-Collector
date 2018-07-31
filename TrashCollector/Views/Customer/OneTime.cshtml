@@ -4,17 +4,16 @@
     ViewBag.Title = "OneTime";
 }
 
-<!DOCTYPE html>
+<style type="text/css">
+    .PageTitle {
+        padding: 25px;
+    }
+</style>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>OneTime</title>
-</head>
 <body>
     @using (Html.BeginForm())
     {
-        <h2 class="Page-Title">
+        <h2 class="PageTitle">
             Add One Time Pickup
         </h2>
         <h5 class="Page-SecondaryTitle">
@@ -64,4 +63,3 @@
                 }
 
         </body>
-</html>

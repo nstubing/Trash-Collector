@@ -76,11 +76,12 @@ namespace TrashCollector.Controllers
             return View(OrderedByDate);
         }
 
-        public ActionResult Map(int ID)
+        public ActionResult Map(int id)
         {
-            var thisPickup = db.Pickups.FirstOrDefault(p=>p.Id==ID);
+            var thisPickup = db.Pickups.FirstOrDefault(p=>p.Id==id);
             var User = db.Users.FirstOrDefault(u => u.Id == thisPickup.UserId);
             string Address = User.Address +" "+ User.City+" " + User.State+" " + User.ZipCode;
+            ViewBag.Info = User.FirstName + " " + User.LastName + " : " + Address;
             ViewBag.Address = Address;
             string key = MyKeys.GOOGlE_API_KEY;
             string myKey = "https://maps.googleapis.com/maps/api/js?key=" + key + "&callback=initMap";
