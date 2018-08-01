@@ -35,10 +35,12 @@ namespace TrashCollector.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Pricing()
         {
-            ViewBag.Message = "Your contact page.";
-
+            return View();
+        }
+        public ActionResult Features()
+        {
             return View();
         }
     }

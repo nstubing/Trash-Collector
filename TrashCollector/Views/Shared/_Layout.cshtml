@@ -7,19 +7,25 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style type="text/css">
-        #Commited {
-            text-align: center;
-            color: forestgreen;
+        #headerbox {
             position: relative;
-            background-color: #00611C;
-            /*border-bottom-style: solid;
-            border-bottom-width: 35px;
-            border-color: #00611C;*/
+            top: -20px;
+            margin:-30px;
+        }
+        #headerText {
+            text-align: center;
+            color: darkgreen;
+            background-color: lawngreen;
+            border-style: solid;
+            border-width: 20px;
+            border-color: lawngreen;
         }
     </style>
 </head>
 <body>
-    <h2 id="Commited">Committed to you, committed to trash.</h2>
+    <header id="headerbox">
+        <h1 id="headerText">Committed to trash, commited to you</h1>
+    </header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="@Url.Action("Index","Home")">TRASH MAN</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">

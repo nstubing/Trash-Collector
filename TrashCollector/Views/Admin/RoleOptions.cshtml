@@ -8,6 +8,14 @@
         padding-top: 25px;
         padding-bottom: 25px;
     }
+    .role{
+        color:darkgreen;
+    }
+    .backrole{
+        border-style:solid;
+        border-color:greenyellow;
+        border-width:3px;
+    }
 </style>
 
 <h2 class="PageTitle">Edit Roles</h2>
@@ -24,9 +32,13 @@
 
     if (ViewBag.Role != null)
     {
-        <div style="background-color:darkgreen">
-            <h3>Roles for This User</h3>
-            <h2>@ViewBag.Role.ToString()</h2>
+        <div style="background-color:greenyellow" class="backrole">
+            <span>
+                <h3 class="role">Role for This User:</h3>
+            </span>
+            <span>
+                <h2 class="role">@ViewBag.Role.ToString()</h2>
+            </span>
         </div>
     }
 
