@@ -5,7 +5,8 @@
 }
 <style type="text/css">
     .PageTitle {
-        padding: 25px;
+        padding-top: 25px;
+        padding-bottom: 25px;
     }
 </style>
 <h2 class="PageTitle">Current Balance</h2>
@@ -18,9 +19,21 @@
         Charges will only be incured when a pickup is confirmed, If a pickup is missed or you have a scheduled pickup suspension your account will not be charged.
     </p>
 </div>
-<div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
-        <input type="submit" value="Make Payment" class="btn btn-default" />
-    </div>
-</div>
+@*<div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Make Payment" class="btn btn-default" />
+        </div>
+    </div>*@
+<form action="/Customer/Payment" method="POST">
+    <article>
+        <label>Amount: $@ViewBag.Bill.00</label>
+    </article>
+    <script src="//checkout.stripe.com/v2/checkout.js"
+            class="stripe-button"
+            data-key="@ViewBag.StripePublishKey"
+            data-locale="auto"
+            data-description="Sample Charge"
+            data-amount=(parseInt(@ViewBag.Bill)*100).ToString()>
+    </script>
+</form>
 

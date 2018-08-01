@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
+using Stripe;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -47,6 +49,33 @@ namespace TrashCollector.Controllers
             var CurrentUser = db.Users.FirstOrDefault(u => u.Id == currentUserID);
             ViewBag.Bill = CurrentUser.BillTotal;
             ViewBag.EndMonth = lastDayOfMonth;
+            var stripePublishKey = ConfigurationManager.AppSettings["pk_test_VQtoByzEBwFhM1EKXuqI4ueC"];
+            ViewBag.StripePublishKey = stripePublishKey;
+;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Charge(string stripeEmail, string stripeToken)
+        {
+            var customers = new StripeCustomerService();
+            var charges = new StripeChargeService();
+
+            var customer = customers.Create(new StripeCustomerCreateOptions
+            {
+                Email = stripeEmail,
+                SourceToken = stripeToken
+            });
+
+            var charge = charges.Create(new StripeChargeCreateOptions
+            {
+                Amount = 500,//charge in cents
+                Description = "Sample Charge",
+                Currency = "usd",
+                CustomerId = customer.Id
+            });
+
+            // further application specific code goes here
+
             return View();
         }
         public ActionResult OneTime()
@@ -90,6 +119,7 @@ namespace TrashCollector.Controllers
             db.SaveChanges();
             return RedirectToAction("Pickup");
         }
+
         public ActionResult ExcludedDays()
         {
             var currentUserId = User.Identity.GetUserId();

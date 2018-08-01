@@ -16,7 +16,6 @@ namespace TrashCollector.Controllers
         // GET: Employee
         public ActionResult DailyPickups()
         {
-            db.Configuration.LazyLoadingEnabled = false;
             var currentDay = DateTime.Now;
             var currentDayString = currentDay.ToString("d");
             var currentUserId = User.Identity.GetUserId();
@@ -88,6 +87,32 @@ namespace TrashCollector.Controllers
             ViewBag.myKey = myKey;
             return View();
 
+        }
+
+        public ActionResult AllPickups()
+        {
+            var currentDay = DateTime.Now;
+            var currentDayString = currentDay.ToString("d");
+            var currentUserId = User.Identity.GetUserId();
+            var currentUserZip = db.Users.FirstOrDefault(u => u.Id == currentUserId).ZipCode;
+            var todaysPickups = db.Pickups.Where(p => p.date == currentDayString && p.Zipcode == currentUserZip).Include(u => u.User);
+            ViewBag.CurrentZip = currentUserZip;
+            List<string> myAddresses = new List<string>();
+            foreach (Pickup thisPickup in todaysPickups)
+            {
+                string address = thisPickup.User.Address + " " + thisPickup.User.City + " " + thisPickup.User.State + " " + thisPickup.User.ZipCode;
+                myAddresses.Add(address);
+            }
+            ViewBag.Start = myAddresses.First();
+            ViewBag.End = myAddresses.Last();
+            var stopsMinusStart = myAddresses.Skip(1);
+            var stops = stopsMinusStart.Take(stopsMinusStart.Count() - 1).ToArray();
+            ViewBag.Stops = stops;
+            ViewBag.Length = stops.Length;
+            string key = MyKeys.GOOGlE_API_KEY;
+            string myKey = "https://maps.googleapis.com/maps/api/js?key=" + key + "&callback=initMap";
+            ViewBag.myKey = myKey;
+            return View();
         }
     }
 }

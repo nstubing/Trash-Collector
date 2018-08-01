@@ -7,9 +7,11 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style type="text/css">
-        #Commited{
-            text-align:center;
-            color:darkgreen;
+        #Commited {
+            text-align: center;
+            color: darkgreen;
+            position: relative;
+            top: -20px;
         }
     </style>
 </head>
@@ -29,6 +31,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("WeeklyPickups", "Employee")">Weekly Pickups</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("AllPickups", "Employee")">Route</a>
                 </li>
             </ul>
             @Html.Partial("_LoginPartial")

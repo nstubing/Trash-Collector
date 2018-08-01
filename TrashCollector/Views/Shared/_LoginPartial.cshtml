@@ -1,4 +1,14 @@
-﻿@using Microsoft.AspNet.Identity
+﻿<style type="text/css">
+    .nav li{
+        padding-right:10px;
+        padding-left:10px;
+    }
+    .nav li text{
+        color:forestgreen;
+    }
+</style>
+
+@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))

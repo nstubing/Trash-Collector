@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "AllPickups";
+}
+
+
+<head>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+
+        .PageTitle {
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="PageTitle">All Locations</h2>
+    <div id="map"></div>
+    <div>
+        <p>
+            @Html.ActionLink("Return to Daily Pickups", "DailyPickups")
+        </p>
+    </div>
+    <script>
+        function initMap() {
+            var Zipcode = '@ViewBag.CurrentZip';
+            var geocoder = new google.maps.Geocoder();
+            var directionsService = new google.maps.DirectionsService();
+            var directionsDisplay = new google.maps.DirectionsRenderer();
+            var LatLong = { lat: 39.9526, lng: 75.1652 };
+            var start = '@ViewBag.Start';
+            var end = '@ViewBag.End';
+            var wayPnts = @Html.Raw(Json.Encode(ViewBag.Stops));
+            var length = parseInt(@ViewBag.Length);
+            var waypoints = [];
+            geocoder.geocode({ 'address': Zipcode }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    LatLong = results[0].geometry.location;
+                    var map = new google.maps.Map(document.getElementById('map'), { zoom: 6, center: LatLong });
+                    directionsDisplay.setMap(map);
+                }
+            });
+            for (var i = 0; i < length; i++)
+            {
+                waypoints.push({
+                    location: wayPnts[i]
+                });
+            }
+            directionsService.route({
+                origin: start,
+                destination: end,
+                waypoints: waypoints,
+                optimizeWaypoints: true,
+                travelMode: 'DRIVING'
+                }, function (response, status) {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                    var route = response.routes[0];
+                }
+            });
+        }
+
+    </script>
+    <script async defer
+            src='@ViewBag.myKey'>
+    </script>
+</body>
