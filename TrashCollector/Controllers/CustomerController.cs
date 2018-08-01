@@ -80,12 +80,13 @@ namespace TrashCollector.Controllers
             var currentUser = User.Identity.GetUserId();
             var UserPickup = db.Users.FirstOrDefault(u => u.Id == currentUser);
             UserPickup.ScheduledDay = PickedDay;
-            Pickup myPickup = new Pickup();
-            myPickup.User = UserPickup;
-            myPickup.date = currentDayString;
-            myPickup.Confirmation = "Unconfirmed";
-            myPickup.Zipcode = UserPickup.ZipCode;
-            db.Pickups.Add(myPickup);
+            //used for testing so I can add pickups for today.
+            //Pickup myPickup = new Pickup();
+            //myPickup.User = UserPickup;
+            //myPickup.date = currentDayString;
+            //myPickup.Confirmation = "Unconfirmed";
+            //myPickup.Zipcode = UserPickup.ZipCode;
+            //db.Pickups.Add(myPickup);
             db.SaveChanges();
             return RedirectToAction("Pickup");
         }

@@ -43,10 +43,10 @@ namespace TrashCollector.Controllers
             return View(myWeeklyPickups);
         }
 
-        public ActionResult ConfirmPickup(int pickupID)
+        public ActionResult ConfirmPickup(int id)
         {
-            var thisPickup = db.Pickups.FirstOrDefault(p => p.Id == pickupID);
-            string thisPickupUserID = thisPickup.User.Id;
+            var thisPickup = db.Pickups.FirstOrDefault(p => p.Id == id);
+            string thisPickupUserID = thisPickup.UserId;
             thisPickup.Confirmation = "Confirmed";
             var thisUser = db.Users.FirstOrDefault(u => u.Id == thisPickupUserID);
             thisUser.BillTotal += 5.00;

@@ -10,7 +10,6 @@
 </style>
 <h2 class="PageTitle">DailyPickups</h2>
 
-
 <table class="table">
     <tr>
         <th>
@@ -36,44 +35,45 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.ZipCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.ScheduledDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Confirmation)
-        </td>
-        @if (item.Confirmation == "Unconfirmed")
-        {
-        <td>
-            @Html.ActionLink("Confim Pickup", "Confirm", new { id = item.Id }) |
-            @Html.ActionLink("Map", "Map", new { id = item.Id })
-        </td>
-        }
-        else
-        {
-        <td>
-            @Html.ActionLink("Map", "Map", new { id = item.Id })
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.ScheduledDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Confirmation)
+            </td>
+            @if (item.Confirmation == "Unconfirmed")
+            {
+                <td>
+                    @Html.ActionLink("Confim Pickup", "ConfirmPickup", new { id = item.Id }) |
+                    @Html.ActionLink("Map", "Map", new { id = item.Id })
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.ActionLink("Map", "Map", new { id = item.Id })
 
-        </td>
-        }
-    </tr>
-}
+                </td>
+            }
+        </tr>
+    }
 
 </table>
