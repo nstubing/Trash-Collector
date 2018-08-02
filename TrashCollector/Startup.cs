@@ -45,6 +45,7 @@ namespace TrashCollector
                     newPickup.User = customer;
                     newPickup.date = currentDay.ToString("d");
                     newPickup.Confirmation = "Unconfirmed";
+                    newPickup.Zipcode = customer.ZipCode;
                     context.Pickups.Add(newPickup);
                 }
                 foreach (OneTimePickup customer in OneTimers)
