@@ -388,6 +388,7 @@
     <Content Include="Views\Customer\OneTime.cshtml" />
     <Content Include="Views\Employee\Map.cshtml" />
     <Content Include="Views\Employee\AllPickups.cshtml" />
+    <Content Include="Views\Employee\AllMap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

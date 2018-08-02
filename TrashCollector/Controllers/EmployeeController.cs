@@ -114,5 +114,18 @@ namespace TrashCollector.Controllers
             ViewBag.myKey = myKey;
             return View();
         }
+
+        public ActionResult AllMap(string id)
+        {
+            var thisPickup = db.Users.FirstOrDefault(p => p.Id == id);
+            string Address = thisPickup.Address + " " + thisPickup.City + " " + thisPickup.State + " " + thisPickup.ZipCode;
+            ViewBag.Info = thisPickup.FirstName + " " + thisPickup.LastName + " : " + Address;
+            ViewBag.Address = Address;
+            string key = MyKeys.GOOGlE_API_KEY;
+            string myKey = "https://maps.googleapis.com/maps/api/js?key=" + key + "&callback=initMap";
+            ViewBag.myKey = myKey;
+            return View();
+
+        }
     }
 }
